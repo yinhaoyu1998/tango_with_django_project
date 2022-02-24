@@ -1,4 +1,3 @@
-
 """
 Django settings for tango_with_django_project project.
 
@@ -13,20 +12,20 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
-#print(__file__)
-#print(os.path.dirname(__file__))
-#print(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
+STATIC_DIR=os.path.join(BASE_DIR,'static')
+
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p^6n^4@m4*w59@9ycuo-t3v@lvlq-wd9)54p+g#p5d8dy-5mbk'
+SECRET_KEY = '7lx5)bwqm3&s-lmdufrlu_4=v0zp4m994yk*#)1k-y!&w72#!o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rango'
+    'rango',
 ]
 
 MIDDLEWARE = [
@@ -69,14 +68,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media', # Check/add this line!
+                'django.template.context_processors.media', #new template for media
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
-
 
 
 # Database
@@ -108,10 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-PASSWORD_HASHERS = (
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher', )
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -126,13 +120,23 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOGIN_URL = 'rango:login'
-
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATICFILES_DIRS=[STATIC_DIR,]
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [STATIC_DIR,]
+
+MEDIA_DIR=os.path.join(BASE_DIR,'media')
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+
+PASSWORD_HASHERS= (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
+
+LOGIN_URL = 'rango:login'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
